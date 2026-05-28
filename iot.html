@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT Projects | Mardinata Indra Kristianto</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #05161a 0%, #06242b 100%);
+      color: #eef2ff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* background effect - different from leadership (cyan/teal theme) */
+    .bg-cyber {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: radial-gradient(circle at 70% 20%, #0a3b44 0%, #05161a 70%);
+    }
+
+    .grid-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.05;
+      background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.3) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1280px;
+      margin: auto;
+      padding: 60px 0;
+    }
+
+    /* header section */
+    .page-header {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .page-header .badge {
+      display: inline-block;
+      background: rgba(0, 255, 255, 0.12);
+      padding: 8px 24px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #2dd4bf;
+      margin-bottom: 20px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff, #2dd4bf, #14b8a6);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+    }
+
+    .subhead {
+      color: #94b8c2;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* stats cards with cyan theme */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 25px;
+      margin: 50px 0 60px;
+    }
+
+    .stat-card {
+      background: rgba(6, 40, 45, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      border-radius: 28px;
+      padding: 28px 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-8px);
+      border-color: #2dd4bf;
+      background: rgba(10, 55, 60, 0.7);
+      box-shadow: 0 10px 25px rgba(0, 255, 255, 0.15);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #2dd4bf, #14b8a6);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .stat-label {
+      color: #94b8c2;
+      margin-top: 10px;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    /* project cards - main feature */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 50px 0 30px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title i {
+      color: #2dd4bf;
+      font-size: 1.8rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .project-card {
+      background: rgba(6, 40, 45, 0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(0, 255, 255, 0.15);
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.35s ease;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      border-color: #2dd4bf;
+      box-shadow: 0 20px 30px -12px rgba(0, 255, 255, 0.2);
+    }
+
+    .project-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover .project-img {
+      transform: scale(1.03);
+    }
+
+    .project-content {
+      padding: 24px;
+    }
+
+    .project-icon {
+      font-size: 2rem;
+      color: #2dd4bf;
+      margin-bottom: 12px;
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #2dd4bf;
+      margin-bottom: 12px;
+    }
+
+    .project-desc {
+      color: #a8c3cd;
+      line-height: 1.6;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tech-tag {
+      background: rgba(0, 255, 255, 0.1);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      color: #2dd4bf;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+    }
+
+    /* gallery modern */
+    .gallery-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 40px 0 30px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 50px;
+    }
+
+    .gallery-card {
+      background: rgba(6, 40, 45, 0.5);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 255, 255, 0.12);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-6px);
+      border-color: #2dd4bf;
+    }
+
+    .gallery-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-card:hover .gallery-img {
+      transform: scale(1.03);
+    }
+
+    .gallery-info {
+      padding: 16px 20px;
+    }
+
+    .gallery-info h4 {
+      color: #2dd4bf;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .gallery-info p {
+      color: #94b8c2;
+      font-size: 0.8rem;
+    }
+
+    /* modal preview */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .modal.active {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal-img {
+      max-width: 90%;
+      max-height: 85%;
+      border-radius: 20px;
+      border: 2px solid #2dd4bf;
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 25px;
+      right: 35px;
+      color: white;
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .modal-close:hover {
+      color: #2dd4bf;
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* back button - cyan theme */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(105deg, #2dd4bf, #0f766e);
+      color: white;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      margin-top: 30px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(45, 212, 191, 0.4);
+      gap: 16px;
+    }
+
+    /* quote section with cyan theme */
+    .quote-block {
+      background: linear-gradient(135deg, rgba(45, 212, 191, 0.08), rgba(15, 118, 110, 0.05));
+      border-radius: 32px;
+      padding: 40px;
+      text-align: center;
+      margin: 50px 0;
+      border: 1px solid rgba(45, 212, 191, 0.2);
+    }
+
+    .quote-block i {
+      font-size: 2.5rem;
+      color: #2dd4bf;
+      opacity: 0.6;
+      margin-bottom: 15px;
+    }
+
+    .quote-text {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: #b8dfe8;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* responsive */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      .container {
+        padding: 40px 0;
+      }
+      .stats-grid {
+        gap: 15px;
+      }
+      .stat-card {
+        padding: 18px 12px;
+      }
+      .stat-number {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* fade animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-cyber"></div>
+<div class="grid-pattern"></div>
+
+<div class="container">
+  <div class="page-header fade-up">
+    <div class="badge">
+      <i class="fas fa-microchip"></i> Smart Connected Systems
+    </div>
+    <h1>Internet of Things (IoT)</h1>
+    <p class="subhead">
+      Pengembangan sistem IoT berbasis sensor, aktuator, dan cloud monitoring. 
+      Implementasi ESP32, Arduino, MQTT, dan platform IoT untuk solusi industri dan rumah pintar.
+    </p>
+  </div>
+
+  <!-- Stats ringkasan IoT -->
+  <div class="stats-grid">
+    <div class="stat-card fade-up">
+      <div class="stat-number">10+</div>
+      <div class="stat-label">IoT Projects Completed</div>
+    </div>
+    <div class="stat-card fade-up">
+      <div class="stat-number">5+</div>
+      <div class="stat-label">Platform Integrations</div>
+    </div>
+    <div class="stat-card fade-up">
+      <div class="stat-number">ESP32/Arduino</div>
+      <div class="stat-label">Microcontrollers</div>
+    </div>
+    <div class="stat-card fade-up">
+      <div class="stat-number">Real-time</div>
+      <div class="stat-label">Monitoring & Control</div>
+    </div>
+  </div>
+
+  <!-- Featured Projects -->
+  <div class="section-title fade-up">
+    <i class="fas fa-project-diagram"></i>
+    <span>Featured IoT Projects</span>
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-card fade-up">
+      <img src="images/iot_project1.jpg" alt="Smart Monitoring" class="project-img" onerror="this.src='https://placehold.co/600x400/0a3b44/2dd4bf?text=Smart+Monitoring'">
+      <div class="project-content">
+        <div class="project-icon"><i class="fas fa-temperature-high"></i></div>
+        <div class="project-title">Smart Environmental Monitoring</div>
+        <div class="project-desc">
+          Sistem monitoring suhu, kelembaban, dan kualitas udara berbasis ESP32 dengan dashboard real-time via Blynk. 
+          Data tersimpan di Firebase dan dapat diakses dari smartphone.
+        </div>
+        <div class="tech-stack">
+          <span class="tech-tag">ESP32</span>
+          <span class="tech-tag">DHT22</span>
+          <span class="tech-tag">Blynk</span>
+          <span class="tech-tag">Firebase</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <img src="images/iot_project2.jpg" alt="RFID Access" class="project-img" onerror="this.src='https://placehold.co/600x400/0a3b44/2dd4bf?text=RFID+Access+Control'">
+      <div class="project-content">
+        <div class="project-icon"><i class="fas fa-id-card"></i></div>
+        <div class="project-title">RFID Access Control System</div>
+        <div class="project-desc">
+          Sistem keamanan berbasis RFID dengan logging akses ke database MySQL. 
+          Dilengkapi notifikasi Telegram untuk setiap akses masuk/keluar.
+        </div>
+        <div class="tech-stack">
+          <span class="tech-tag">Arduino Uno</span>
+          <span class="tech-tag">RC522</span>
+          <span class="tech-tag">MySQL</span>
+          <span class="tech-tag">Telegram Bot</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <img src="images/iot_project3.jpg" alt="Home Automation" class="project-img" onerror="this.src='https://placehold.co/600x400/0a3b44/2dd4bf?text=Home+Automation'">
+      <div class="project-content">
+        <div class="project-icon"><i class="fas fa-home"></i></div>
+        <div class="project-title">Smart Home Automation</div>
+        <div class="project-desc">
+          Kontrol lampu, kipas, dan perangkat rumah tangga via voice command Google Assistant 
+          dan smartphone. Menggunakan NodeMCU dan relay module.
+        </div>
+        <div class="tech-stack">
+          <span class="tech-tag">NodeMCU</span>
+          <span class="tech-tag">Google Assistant</span>
+          <span class="tech-tag">Adafruit IO</span>
+          <span class="tech-tag">Relay</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dokumentasi Gallery IoT -->
+  <div class="gallery-title fade-up">
+    <i class="fas fa-camera"></i>
+    <span>Dokumentasi Proyek IoT</span>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="gallery-card fade-up" data-img="images/iot1.jpg">
+      <img src="images/iot1.jpg" alt="IoT Project Documentation 1" class="gallery-img" onerror="this.src='https://placehold.co/600x400/0a3b44/2dd4bf?text=IoT+Project+1'">
+      <div class="gallery-info">
+        <h4><i class="fas fa-microchip"></i> Prototype ESP32</h4>
+        <p>Rangkaian sensor suhu dan kelembaban dengan ESP32</p>
+      </div>
+    </div>
+    <div class="gallery-card fade-up" data-img="images/iot2.jpg">
+      <img src="images/iot2.jpg" alt="IoT Project Documentation 2" class="gallery-img" onerror="this.src='https://placehold.co/600x400/0a3b44/2dd4bf?text=IoT+Project+2'">
+      <div class="gallery-info">
+        <h4><i class="fas fa-chart-line"></i> Dashboard Monitoring</h4>
+        <p>Tampilan real-time data sensor di platform Blynk</p>
+      </div>
+    </div>
+    <div class="gallery-card fade-up" data-img="images/iot3.jpg">
+      <img src="images/iot3.jpg" alt="IoT Project Documentation 3" class="gallery-img" onerror="this.src='https://placehold.co/600x400/0a3b44/2dd4bf?text=IoT+Project+3'">
+      <div class="gallery-info">
+        <h4><i class="fas fa-id-card"></i> RFID Testing</h4>
+        <p>Pengujian modul RFID untuk sistem akses kontrol</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quote Inspiratif IoT -->
+  <div class="quote-block fade-up">
+    <i class="fas fa-quote-right"></i>
+    <div class="quote-text">
+      "IoT menghubungkan dunia fisik dengan dunia digital. Dengan sensor dan data, 
+      kita dapat menciptakan sistem yang lebih cerdas dan responsif untuk masa depan."
+    </div>
+    <div style="margin-top: 20px; color:#2dd4bf;">— Mardinata Indra Kristianto</div>
+  </div>
+
+  <!-- Tombol Kembali -->
+  <div style="text-align: center;">
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Kembali ke Portfolio Utama
+    </a>
+  </div>
+</div>
+
+<!-- Modal Preview Gambar -->
+<div id="imageModal" class="modal">
+  <span class="modal-close">&times;</span>
+  <img class="modal-img" id="modalImage" alt="Preview">
+</div>
+
+<script>
+  // fade-up scroll animation
+  const fadeElements = document.querySelectorAll('.fade-up');
+  
+  function checkFade() {
+    fadeElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      if (rect.top < windowHeight - 100) {
+        el.classList.add('visible');
+      }
+    });
+  }
+  
+  window.addEventListener('scroll', checkFade);
+  window.addEventListener('load', checkFade);
+  
+  // Modal image preview untuk gallery
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  const closeModal = document.querySelector('.modal-close');
+  
+  const galleryCards = document.querySelectorAll('.gallery-card');
+  galleryCards.forEach(card => {
+    card.addEventListener('click', function(e) {
+      const imgElement = this.querySelector('.gallery-img');
+      let src = imgElement.src;
+      modalImg.src = src;
+      modal.classList.add('active');
+    });
+  });
+  
+  // juga untuk project cards (opsional)
+  const projectCards = document.querySelectorAll('.project-card');
+  projectCards.forEach(card => {
+    card.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A' || e.target.closest('a')) return;
+      const imgElement = this.querySelector('.project-img');
+      if (imgElement) {
+        modalImg.src = imgElement.src;
+        modal.classList.add('active');
+      }
+    });
+  });
+  
+  function closeModalFunc() {
+    modal.classList.remove('active');
+  }
+  
+  closeModal.addEventListener('click', closeModalFunc);
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) closeModalFunc();
+  });
+  
+  // Keyboard ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeModalFunc();
+    }
+  });
+</script>
+
+</body>
+</html>
