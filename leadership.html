@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leadership & Organization | Mardinata Indra Kristianto</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #050816 0%, #0a0f1f 100%);
+      color: #eef2ff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* animated background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: radial-gradient(circle at 30% 10%, #0a1628, #03050b);
+    }
+
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1280px;
+      margin: auto;
+      padding: 60px 0;
+    }
+
+    /* header section */
+    .page-header {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .page-header .badge {
+      display: inline-block;
+      background: rgba(167, 139, 250, 0.15);
+      padding: 8px 24px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #a78bfa;
+      margin-bottom: 20px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(167, 139, 250, 0.3);
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff, #a78bfa, #c084fc);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+    }
+
+    .subhead {
+      color: #94a3b8;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* stats cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      margin: 50px 0 60px;
+    }
+
+    .stat-card {
+      background: rgba(15, 25, 45, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(167, 139, 250, 0.2);
+      border-radius: 28px;
+      padding: 30px 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-8px);
+      border-color: #a78bfa;
+      background: rgba(25, 35, 60, 0.7);
+    }
+
+    .stat-number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #a78bfa, #c084fc);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .stat-label {
+      color: #94a3b8;
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+    /* experience timeline */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 50px 0 30px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title i {
+      color: #a78bfa;
+      font-size: 1.8rem;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      margin-bottom: 50px;
+    }
+
+    .timeline-item {
+      background: rgba(10, 18, 30, 0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(167, 139, 250, 0.15);
+      border-radius: 24px;
+      padding: 28px 32px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, #a78bfa, #c084fc);
+      border-radius: 4px;
+    }
+
+    .timeline-item:hover {
+      transform: translateX(8px);
+      border-color: rgba(167, 139, 250, 0.4);
+      background: rgba(15, 25, 45, 0.8);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .timeline-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #a78bfa;
+    }
+
+    .timeline-date {
+      color: #64748b;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .timeline-sub {
+      color: #cbd5e1;
+      font-weight: 500;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    .timeline-desc {
+      color: #94a3b8;
+      line-height: 1.7;
+    }
+
+    /* gallery modern */
+    .gallery-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 50px 0 30px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 50px;
+    }
+
+    .gallery-card {
+      background: rgba(10, 18, 30, 0.6);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(167, 139, 250, 0.15);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-8px);
+      border-color: #a78bfa;
+      box-shadow: 0 20px 30px -15px rgba(167, 139, 250, 0.2);
+    }
+
+    .gallery-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-card:hover .gallery-img {
+      transform: scale(1.05);
+    }
+
+    .gallery-info {
+      padding: 18px 20px;
+    }
+
+    .gallery-info h4 {
+      color: #a78bfa;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .gallery-info p {
+      color: #94a3b8;
+      font-size: 0.85rem;
+    }
+
+    /* modal untuk preview gambar */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .modal.active {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal-img {
+      max-width: 90%;
+      max-height: 85%;
+      border-radius: 20px;
+      border: 2px solid #a78bfa;
+      box-shadow: 0 0 40px rgba(167, 139, 250, 0.3);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 25px;
+      right: 35px;
+      color: white;
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .modal-close:hover {
+      color: #a78bfa;
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* back button style */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(105deg, #a78bfa, #7c3aed);
+      color: white;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      margin-top: 30px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(167, 139, 250, 0.4);
+      gap: 16px;
+    }
+
+    /* quote section */
+    .quote-block {
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.08), rgba(124, 58, 237, 0.05));
+      border-radius: 32px;
+      padding: 40px;
+      text-align: center;
+      margin: 50px 0;
+      border: 1px solid rgba(167, 139, 250, 0.2);
+    }
+
+    .quote-block i {
+      font-size: 2.5rem;
+      color: #a78bfa;
+      opacity: 0.6;
+      margin-bottom: 15px;
+    }
+
+    .quote-text {
+      font-size: 1.2rem;
+      font-style: italic;
+      color: #cbd5e1;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* responsive */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      .timeline-header {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .container {
+        padding: 40px 0;
+      }
+      .stats-grid {
+        gap: 15px;
+      }
+      .stat-card {
+        padding: 20px;
+      }
+    }
+
+    /* fade in animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-animation"></div>
+<div class="particles"></div>
+
+<div class="container">
+  <div class="page-header fade-up">
+    <div class="badge">
+      <i class="fas fa-users"></i> Leadership Journey
+    </div>
+    <h1>Leadership & Organization</h1>
+    <p class="subhead">
+      Pengalaman memimpin tim, mengelola proyek, serta kolaborasi dalam organisasi kampus 
+      dan komunitas robotika. Dedikasi untuk menciptakan dampak positif melalui kepemimpinan yang inspiratif.
+    </p>
+  </div>
+
+  <!-- Stats ringkasan -->
+  <div class="stats-grid">
+    <div class="stat-card fade-up">
+      <div class="stat-number">3+</div>
+      <div class="stat-label">Tahun Pengalaman Organisasi</div>
+    </div>
+    <div class="stat-card fade-up">
+      <div class="stat-number">5+</div>
+      <div class="stat-label">Proyek Kepemimpinan</div>
+    </div>
+    <div class="stat-card fade-up">
+      <div class="stat-number">50+</div>
+      <div class="stat-label">Tim Members Managed</div>
+    </div>
+    <div class="stat-card fade-up">
+      <div class="stat-number">8+</div>
+      <div class="stat-label">Workshop & Training</div>
+    </div>
+  </div>
+
+  <!-- Timeline Pengalaman -->
+  <div class="section-title fade-up">
+    <i class="fas fa-chart-line"></i>
+    <span>Posisi & Pengalaman</span>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item fade-up">
+      <div class="timeline-header">
+        <span class="timeline-title">Ketua UKM Robotika</span>
+        <span class="timeline-date">2023 - 2025</span>
+      </div>
+      <div class="timeline-sub">Universitas | Robot & Automation Community</div>
+      <div class="timeline-desc">
+        Memimpin organisasi robotika kampus dengan 40+ anggota aktif. Mengkoordinasi latihan rutin, 
+        persiapan kontes robot nasional, serta mengadakan workshop IoT dan mikrokontroler untuk 
+        mahasiswa. Berhasil meningkatkan partisipasi anggota dalam lomba hingga 200% dibanding tahun sebelumnya.
+      </div>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-header">
+        <span class="timeline-title">Koordinator Proyek Automation</span>
+        <span class="timeline-date">2024</span>
+      </div>
+      <div class="timeline-sub">Industrial IoT Research Group</div>
+      <div class="timeline-desc">
+        Memimpin tim 8 orang dalam pengembangan sistem monitoring suhu & energi berbasis IoT untuk 
+        mini plant industri. Mengatur jadwal, membagi tugas programming dan perakitan hardware, 
+        serta melakukan presentasi hasil riset di forum internal kampus.
+      </div>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-header">
+        <span class="timeline-title">Mentor Robotika & IoT</span>
+        <span class="timeline-date">2023 - 2024</span>
+      </div>
+      <div class="timeline-sub">Pelatihan Mahasiswa Baru</div>
+      <div class="timeline-desc">
+        Menjadi mentor untuk 15+ junior dalam bidang dasar elektronika, pemrograman Arduino, 
+        serta desain robot line follower. Membantu membangun fondasi teknis dan pola pikir problem solving.
+      </div>
+    </div>
+  </div>
+
+  <!-- Dokumentasi Gallery -->
+  <div class="gallery-title fade-up">
+    <i class="fas fa-images"></i>
+    <span>Dokumentasi Kegiatan</span>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="gallery-card fade-up" data-img="images/leader1.jpg">
+      <img src="images/leader1.jpg" alt="Leadership Event 1" class="gallery-img" onerror="this.src='https://placehold.co/600x400/1e293b/a78bfa?text=Photo+1'">
+      <div class="gallery-info">
+        <h4><i class="fas fa-trophy"></i> Kontes Robot Nasional</h4>
+        <p>Tim robotika Univesitas saat persiapan final KRCI 2024</p>
+      </div>
+    </div>
+    <div class="gallery-card fade-up" data-img="images/leader2.jpg">
+      <img src="images/leader2.jpg" alt="Leadership Event 2" class="gallery-img" onerror="this.src='https://placehold.co/600x400/1e293b/a78bfa?text=Photo+2'">
+      <div class="gallery-info">
+        <h4><i class="fas fa-chalkboard-user"></i> Workshop IoT</h4>
+        <p>Sesi mentoring bersama anggota baru mengenai ESP32 & Blynk</p>
+      </div>
+    </div>
+    <div class="gallery-card fade-up" data-img="images/leader3.jpg">
+      <img src="images/leader3.jpg" alt="Leadership Event 3" class="gallery-img" onerror="this.src='https://placehold.co/600x400/1e293b/a78bfa?text=Photo+3'">
+      <div class="gallery-info">
+        <h4><i class="fas fa-handshake"></i> Rapat Koordinasi</h4>
+        <p>Bersama pengurus UKM Robotika merencanakan program kerja</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quote Inspiratif -->
+  <div class="quote-block fade-up">
+    <i class="fas fa-quote-right"></i>
+    <div class="quote-text">
+      "Kepemimpinan bukan tentang posisi, tetapi tentang dampak yang kita ciptakan 
+      dan tim yang kita inspirasikan untuk terus berkembang."
+    </div>
+    <div style="margin-top: 20px; color:#a78bfa;">— Mardinata Indra Kristianto</div>
+  </div>
+
+  <!-- Tombol Kembali -->
+  <div style="text-align: center;">
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Kembali ke Portfolio Utama
+    </a>
+  </div>
+</div>
+
+<!-- Modal Preview Gambar -->
+<div id="imageModal" class="modal">
+  <span class="modal-close">&times;</span>
+  <img class="modal-img" id="modalImage" alt="Preview">
+</div>
+
+<script>
+  // fade-up scroll animation
+  const fadeElements = document.querySelectorAll('.fade-up');
+  
+  function checkFade() {
+    fadeElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      if (rect.top < windowHeight - 100) {
+        el.classList.add('visible');
+      }
+    });
+  }
+  
+  window.addEventListener('scroll', checkFade);
+  window.addEventListener('load', checkFade);
+  
+  // Modal image preview
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  const closeModal = document.querySelector('.modal-close');
+  
+  const galleryCards = document.querySelectorAll('.gallery-card');
+  galleryCards.forEach(card => {
+    card.addEventListener('click', function(e) {
+      const imgSrc = this.getAttribute('data-img');
+      const imgElement = this.querySelector('.gallery-img');
+      let src = imgElement.src;
+      // jika gambar gagal load, tetap pakai placeholder
+      if (imgSrc && imgSrc !== '#') src = imgSrc;
+      modalImg.src = src;
+      modal.classList.add('active');
+    });
+  });
+  
+  function closeModalFunc() {
+    modal.classList.remove('active');
+  }
+  
+  closeModal.addEventListener('click', closeModalFunc);
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) closeModalFunc();
+  });
+  
+  // Keyboard ESC untuk close modal
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeModalFunc();
+    }
+  });
+  
+  // handle gambar error / placeholder alternatif (tapi tetap cantik)
+  const allImgs = document.querySelectorAll('.gallery-img');
+  allImgs.forEach(img => {
+    img.addEventListener('error', function() {
+      this.src = 'https://placehold.co/600x400/0f172a/a78bfa?text=Dokumentasi';
+    });
+  });
+</script>
+
+</body>
+</html>
